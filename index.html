@@ -73,12 +73,6 @@
   <p class="text-txt2 text-xs tracking-widest">COMPILING PORTFOLIO...</p>
 </div>
 
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
-
-
-<div id="scroll-progress"></div>
-
 <div class="grid-bg"></div>
 <div class="blob blob-anim" style="width:520px;height:520px; top:-120px; left:-120px;"></div>
 <div class="blob blob-anim" style="width:460px;height:460px; top:40%; right:-160px; animation-delay:3s;"></div>
@@ -134,10 +128,10 @@
           I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies.
         </p>
         <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-          <a href="Resume.pdf" class="magnetic btn-glow px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+          <a href="Resume.pdf" class="btn-glow px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
             Download Resume
           </a>
-          <a href="#projects" class="magnetic btn-outline px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+          <a href="#projects" class="btn-outline px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
             View Projects
           </a>
         </div>
@@ -262,7 +256,7 @@
       </div>
     </div>
 
-    <div id="project-grid" class="grid md:grid-cols-2 gap-8">
+    <div id="project-grid" class="project-grid grid gap-5 md:gap-6">
 
       <article class="project-card featured panel reveal" data-cat="ai web" data-anim="up">
         <div class="project-media">
@@ -273,6 +267,7 @@
             <h3 class="font-heading font-bold text-2xl mb-0">The Offline Co.</h3>
           </div>
           <p class="project-description">The Offline Co. is an AI-powered platform that helps people disconnect from digital overload through curated 48-hour phone-free experiences. Built as part of the AI Innovation Hackathon, the project promotes digital well-being, meaningful human connections, and immersive offline experiences.</p>
+          <button type="button" class="project-read-more" aria-expanded="false">Read More</button>
 
           <div class="project-achievement">
             <span class="project-award-badge">🏆 Most Practical Award</span>
@@ -301,6 +296,7 @@
         <div class="project-body">
           <h3 class="font-heading font-bold text-xl mb-2">Expense Tracker</h3>
           <p class="project-description">A modern full-stack expense management application that helps users track income and expenses, monitor spending habits, and manage their personal finances with an intuitive dashboard.</p>
+          <button type="button" class="project-read-more" aria-expanded="false">Read More</button>
           <div class="project-tech-stack">
             <span class="skill-pill">Html</span>
             <span class="skill-pill">CSS</span>
@@ -320,6 +316,7 @@
         <div class="project-body">
           <h3 class="font-heading font-bold text-xl mb-2">Weather App</h3>
           <p class="project-description">A responsive weather application that provides real-time weather information for cities around the world using a weather API. The application offers an intuitive interface for searching locations and viewing current weather conditions instantly.</p>
+          <button type="button" class="project-read-more" aria-expanded="false">Read More</button>
           <div class="project-tech-stack">
             <span class="skill-pill">HTML</span>
             <span class="skill-pill">CSS</span>
@@ -340,6 +337,7 @@
         <div class="project-body">
           <h3 class="font-heading font-bold text-xl mb-2">Smart Blind Walking Stick</h3>
           <p class="project-description">A 6-member team project that helps visually impaired individuals navigate safely using an Arduino Nano and HC-SR04 ultrasonic sensor. I contributed to the Arduino programming, sensor integration, hardware assembly, and testing.</p>
+          <button type="button" class="project-read-more" aria-expanded="false">Read More</button>
           <div class="project-tech-stack">
             <span class="skill-pill">Arduino nano</span>
             <span class="skill-pill">Ultrasonic Sensor</span>
@@ -369,7 +367,7 @@
       <p class="text-txt2 mt-4 max-w-2xl">Ideas I'm currently planning and building.</p>
     </div>
 
-    <div class="upcoming-grid grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+    <div class="upcoming-grid grid gap-4 md:gap-5 xl:gap-6 md:grid-cols-2 xl:grid-cols-3">
       <article class="upcoming-card reveal panel" data-anim="up">
         <div class="upcoming-ribbon">Coming Soon</div>
         <div class="upcoming-illustration illustration-ai">

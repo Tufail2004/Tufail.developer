@@ -25,28 +25,7 @@ window.addEventListener('load', () => {
 
 
 
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-
-let mx=0,my=0,rx=0,ry=0;
-window.addEventListener('mousemove', e=>{
-  mx=e.clientX; my=e.clientY;
-  dot.style.left=mx+'px'; dot.style.top=my+'px';
-});
-function ringLoop(){
-  rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  requestAnimationFrame(ringLoop);
-}
-ringLoop();
-document.querySelectorAll('a, button, .panel, input, textarea').forEach(el=>{
-  el.addEventListener('mouseenter', ()=> ring.classList.add('active'));
-  el.addEventListener('mouseleave', ()=> ring.classList.remove('active'));
-});
-
-
 const navbar = document.getElementById('navbar');
-const progress = document.getElementById('scroll-progress');
 const backTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
@@ -55,9 +34,6 @@ window.addEventListener('scroll', () => {
   } else {
     navbar.classList.remove('glass');
   }
-  const h = document.documentElement;
-  const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-  progress.style.width = pct + '%';
   backTop.classList.toggle('show', scrolled > 500);
 });
 backTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
@@ -100,16 +76,6 @@ function startPageAnimations(){
 }
 
 
-document.querySelectorAll('.magnetic').forEach(btn=>{
-  btn.addEventListener('mousemove', (e)=>{
-    const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width/2;
-    const y = e.clientY - r.top - r.height/2;
-    gsap.to(btn, { x: x*0.25, y: y*0.35, duration: 0.4, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', ()=> gsap.to(btn, { x:0, y:0, duration: 0.5, ease: 'elastic.out(1,0.4)' }));
-});
-
 const upcomingCards = document.querySelectorAll('.upcoming-card');
 if (window.framerMotion) {
   upcomingCards.forEach((card, index) => {
@@ -144,6 +110,16 @@ projectMedia.forEach(img => {
   img.addEventListener('error', () => wrapper.classList.add('is-loaded'));
 });
 
+document.querySelectorAll('.project-read-more').forEach(button => {
+  const description = button.previousElementSibling;
+  if (!description) return;
+
+  button.addEventListener('click', () => {
+    const expanded = description.classList.toggle('expanded');
+    button.textContent = expanded ? 'Read Less' : 'Read More';
+    button.setAttribute('aria-expanded', String(expanded));
+  });
+});
 
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
