@@ -1,0 +1,607 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tufail Ahmed — Frontend & Full Stack Developer</title>
+<meta name="description" content="Tufail Ahmed — Frontend Developer, Full Stack Developer and Electronics & Communication Engineer. I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies." />
+
+
+<meta property="og:title" content="Tufail Ahmed — Frontend & Full Stack Developer" />
+<meta property="og:description" content="I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tufail Ahmed — Frontend & Full Stack Developer" />
+<meta name="twitter:description" content="I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies." />
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tufail Ahmed",
+  "jobTitle": "Frontend Developer",
+  "description": "Frontend Developer, Full Stack Developer, Electronics & Communication Engineer",
+  "sameAs": []
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#090B14',
+          bg2: '#111827',
+          card: '#161B22',
+          orange: '#FF8C1A',
+          orangeHover: '#FFA733',
+          txt: '#F8FAFC',
+          txt2: '#9CA3AF',
+          bord: 'rgba(255,255,255,0.08)'
+        },
+        fontFamily: {
+          heading: ['Poppins', 'sans-serif'],
+          body: ['Inter', 'sans-serif']
+        },
+        borderRadius: { xl2: '20px' }
+      }
+    }
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/framer-motion@11.3.19/dist/framer-motion.umd.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-body">
+
+
+<div id="loader">
+  <div class="font-heading text-2xl font-extrabold text-gradient">Tufail<span class="text-txt">.dev</span></div>
+  <div class="load-bar"><div class="load-bar-fill" id="load-fill"></div></div>
+  <p class="text-txt2 text-xs tracking-widest">COMPILING PORTFOLIO...</p>
+</div>
+
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+
+<div id="scroll-progress"></div>
+
+<div class="grid-bg"></div>
+<div class="blob blob-anim" style="width:520px;height:520px; top:-120px; left:-120px;"></div>
+<div class="blob blob-anim" style="width:460px;height:460px; top:40%; right:-160px; animation-delay:3s;"></div>
+<div class="blob blob-anim" style="width:400px;height:400px; bottom:-100px; left:30%; animation-delay:6s;"></div>
+
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between py-5">
+    <a href="#home" class="font-heading text-xl font-extrabold tracking-tight">Tufail<span class="text-orange">.</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#achievements" class="nav-link">Achievements</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="Resume.pdf" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-glow font-heading text-sm font-semibold">
+      Resume
+
+
+    </a>
+    <button id="mobile-toggle" class="md:hidden text-txt" aria-label="Toggle menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden glass mx-4 rounded-2xl px-6 py-6 flex flex-col gap-4 text-sm">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#achievements" class="nav-link">Achievements</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="Tufail Resume.pdf" class="btn-glow text-center px-5 py-2.5 rounded-full font-heading font-semibold">Resume</a>
+  </div>
+</nav>
+
+
+<section id="home" class="relative z-10 min-h-screen flex items-center pt-28 pb-16">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
+    <div class="hero-layout">
+      <div class="reveal hero-copy" data-anim="up">
+        <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-4">HI, I'M</p>
+        <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6">
+          Tufail Ahmed
+        </h1>
+        <div class="font-heading text-2xl sm:text-3xl font-extrabold text-txt2 mb-6 h-10">
+          <span id="typing"></span><span class="type-cursor">&nbsp;</span>
+        </div>
+        <p class="text-txt2 max-w-xl leading-relaxed mb-9 text-[15px] sm:text-base">
+          I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <a href="Resume.pdf" class="magnetic btn-glow px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+            Download Resume
+          </a>
+          <a href="#projects" class="magnetic btn-outline px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+            View Projects
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-12 text-txt2 text-sm">
+          <div><span class="text-txt font-heading font-bold text-xl">4+</span> Projects</div>
+          <div class="w-px h-6 bg-bord"></div>
+          <div><span class="text-txt font-heading font-bold text-xl">1</span> Hackathon Finalist</div>
+          <div class="w-px h-6 bg-bord"></div>
+          <div><span class="text-txt font-heading font-bold text-xl">B.Tech</span> ECE</div>
+        </div>
+      </div>
+
+      <figure class="hero-profile-figure reveal" data-anim="up" aria-label="Profile photo">
+        <img
+          src="profile.jpeg"
+          alt="Profile portrait"
+          class="hero-profile-image"
+        />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="relative z-10 py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">ABOUT</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">About Me</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-3 reveal" data-anim="up">
+        <p class="text-lg sm:text-xl text-txt leading-relaxed mb-6">
+         I'm Tufail Ahmed, a final-year Electronics and Communication Engineering (ECE) student at Haldia Institute of Technology. I'm passionate about software development and enjoy building responsive, user-friendly web applications. I have experience with HTML, CSS, JavaScript, React, Node.js, Express.js, and MongoDB, along with IoT and embedded systems.
+        </p>
+        <p class="text-txt2 leading-relaxed mb-6">
+         I believe in continuous learning and enjoy solving real-world problems through technology. I'm currently strengthening my Data Structures & Algorithms skills while building projects that combine creativity with practical engineering.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <span class="skill-pill px-4 py-2 rounded-full text-sm">Hackathon Finalist</span>
+          <span class="skill-pill px-4 py-2 rounded-full text-sm">AI Enthusiast</span>
+          <span class="skill-pill px-4 py-2 rounded-full text-sm">IoT Explorer</span>
+          <span class="skill-pill px-4 py-2 rounded-full text-sm">Product Builder</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 grid grid-cols-2 gap-4 reveal" data-anim="up">
+        <div class="panel p-6">
+          <p class="text-3xl mb-3">🎓</p>
+          <p class="font-heading font-bold text-sm mb-1">B.Tech ECE</p>
+          <p class="text-txt2 text-xs">Electronics & Communication Engineering</p>
+        </div>
+        <div class="panel p-6">
+          <p class="text-3xl mb-3">💻</p>
+          <p class="font-heading font-bold text-sm mb-1">Frontend Dev</p>
+          <p class="text-txt2 text-xs">React & modern UI</p>
+        </div>
+        <div class="panel p-6">
+          <p class="text-3xl mb-3">🚀</p>
+          <p class="font-heading font-bold text-sm mb-1">Full Stack</p>
+          <p class="text-txt2 text-xs">Currently leveling up</p>
+        </div>
+        <div class="panel p-6">
+          <p class="text-3xl mb-3">🏆</p>
+          <p class="font-heading font-bold text-sm mb-1">Hackathons</p>
+          <p class="text-txt2 text-xs">Finalist, Top 15 team</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="relative z-10 py-28 bg-bg2/40">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">SKILLS</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">What I work with</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="panel p-7 reveal" data-anim="up">
+        <h3 class="font-heading font-bold text-lg mb-5 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange"></span>Frontend</h3>
+        <ul class="space-y-3 text-txt2 text-sm">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Tailwind CSS</li>
+        </ul>
+      </div>
+      <div class="panel p-7 reveal" data-anim="up">
+        <h3 class="font-heading font-bold text-lg mb-5 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange"></span>Backend</h3>
+        <ul class="space-y-3 text-txt2 text-sm">
+          <li>Node.js</li><li>Express.js</li><li>MongoDB</li>
+        </ul>
+      </div>
+      <div class="panel p-7 reveal" data-anim="up">
+        <h3 class="font-heading font-bold text-lg mb-5 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange"></span>Languages</h3>
+        <ul class="space-y-3 text-txt2 text-sm">
+          <li>Java</li><li>JavaScript</li>
+        </ul>
+      </div>
+      <div class="panel p-7 reveal" data-anim="up">
+        <h3 class="font-heading font-bold text-lg mb-5 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange"></span>Tools</h3>
+        <ul class="space-y-3 text-txt2 text-sm">
+          <li>Git</li><li>GitHub</li><li>VS Code</li><li>Postman</li><li>Figma</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="projects" class="relative z-10 py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-10 flex flex-wrap items-end justify-between gap-6" data-anim="up">
+      <div>
+        <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">PROJECTS</p>
+        <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Things I've built</h2>
+      </div>
+      <div class="flex flex-wrap gap-2" id="filters">
+        <button class="filter-btn active px-4 py-2 rounded-full text-xs font-heading font-semibold btn-outline" data-filter="all">All</button>
+        <button class="filter-btn px-4 py-2 rounded-full text-xs font-heading font-semibold btn-outline" data-filter="web">Web</button>
+        <button class="filter-btn px-4 py-2 rounded-full text-xs font-heading font-semibold btn-outline" data-filter="ai">AI</button>
+        <button class="filter-btn px-4 py-2 rounded-full text-xs font-heading font-semibold btn-outline" data-filter="iot">IoT</button>
+      </div>
+    </div>
+
+    <div id="project-grid" class="grid md:grid-cols-2 gap-8">
+
+      <article class="project-card featured panel reveal" data-cat="ai web" data-anim="up">
+        <div class="project-media">
+          <img class="project-screenshot" src="https://static.prod-images.emergentagent.com/jobs/8233dccd-e10a-45ac-93c0-5e1ff12eeb81/images/a442b8b5c46dd5c0aba75a7f85fe0c41e8bcc4d39a1b435c00a324223d2b7479.png" alt="The Offline Co. app homepage preview" loading="lazy">
+        </div>
+        <div class="project-body">
+          <div class="project-header-row">
+            <h3 class="font-heading font-bold text-2xl mb-0">The Offline Co.</h3>
+          </div>
+          <p class="project-description">The Offline Co. is an AI-powered platform that helps people disconnect from digital overload through curated 48-hour phone-free experiences. Built as part of the AI Innovation Hackathon, the project promotes digital well-being, meaningful human connections, and immersive offline experiences.</p>
+
+          <div class="project-achievement">
+            <span class="project-award-badge">🏆 Most Practical Award</span>
+            <span class="project-award-sub">Top 15 Finalist – AI Innovation Arena Grand Finale</span>
+          </div>
+
+          <div class="project-tech-stack">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Tailwind CSS</span>
+            <span class="skill-pill">AI</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="https://github.com/kycilius/the-offline-co." class="btn-outline">GitHub</a>
+            <a href="https://the-offline-co.vercel.app/" class="btn-glow">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card panel reveal" data-cat="web" data-anim="up">
+        <div class="project-media">
+          <img class="project-screenshot" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Expense Tracker dashboard preview" loading="lazy">
+        </div>
+        <div class="project-body">
+          <h3 class="font-heading font-bold text-xl mb-2">Expense Tracker</h3>
+          <p class="project-description">A modern full-stack expense management application that helps users track income and expenses, monitor spending habits, and manage their personal finances with an intuitive dashboard.</p>
+          <div class="project-tech-stack">
+            <span class="skill-pill">Html</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">JavaScript</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Tufail2004/Expense-Tracker" class="btn-outline">GitHub</a>
+            <a href="https://expense-tracker-tau-tawny.vercel.app/" class="btn-glow">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card panel reveal" data-cat="web" data-anim="up">
+        <div class="project-media">
+          <img class="project-screenshot" src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1200&q=80" alt="Weather app preview" loading="lazy">
+        </div>
+        <div class="project-body">
+          <h3 class="font-heading font-bold text-xl mb-2">Weather App</h3>
+          <p class="project-description">A responsive weather application that provides real-time weather information for cities around the world using a weather API. The application offers an intuitive interface for searching locations and viewing current weather conditions instantly.</p>
+          <div class="project-tech-stack">
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">API</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Tufail2004/weather" class="btn-outline">GitHub</a>
+            <a href="https://weather-nine-mocha-15.vercel.app/" class="btn-glow">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card panel reveal" data-cat="iot" data-anim="up">
+        <div class="project-media">
+          <img class="project-screenshot" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Smart walking stick hardware preview" loading="lazy">
+        </div>
+        <div class="project-body">
+          <h3 class="font-heading font-bold text-xl mb-2">Smart Blind Walking Stick</h3>
+          <p class="project-description">A 6-member team project that helps visually impaired individuals navigate safely using an Arduino Nano and HC-SR04 ultrasonic sensor. I contributed to the Arduino programming, sensor integration, hardware assembly, and testing.</p>
+          <div class="project-tech-stack">
+            <span class="skill-pill">Arduino nano</span>
+            <span class="skill-pill">Ultrasonic Sensor</span>
+            <span class="skill-pill">c/c++</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Tufail2004/Smart-Blind-Walking-Stick" class="btn-outline">GitHub</a>
+            <a href="D:\AHMED\video\WhatsApp Video 2026-07-31 at 12.00.02 AM.mp4" class="btn-glow">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="upcoming-projects" class="relative z-10 py-28">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="blob blob-anim" style="width:420px;height:420px; left:-120px; top:-40px; opacity:0.42;"></div>
+    <div class="blob blob-anim" style="width:360px;height:360px; right:-100px; top:20%; opacity:0.32; animation-delay:2s;"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="reveal mb-12 text-center md:text-left" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">UPCOMING</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Upcoming Projects</h2>
+      <p class="text-txt2 mt-4 max-w-2xl">Ideas I'm currently planning and building.</p>
+    </div>
+
+    <div class="upcoming-grid grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <article class="upcoming-card reveal panel" data-anim="up">
+        <div class="upcoming-ribbon">Coming Soon</div>
+        <div class="upcoming-illustration illustration-ai">
+          <span>🧠</span>
+        </div>
+        <div class="upcoming-body">
+          <div class="upcoming-meta">
+            <span class="status-badge in-progress">In Progress</span>
+            <span class="upcoming-due">Q4 2026</span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl mb-3">AI Study Assistant</h3>
+          <p class="upcoming-description">An AI-powered study platform that summarizes notes, generates quizzes, explains difficult concepts, and helps students prepare for exams with personalized learning.</p>
+          <div class="upcoming-tech">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>AI</span>
+            <span>Gemini API</span>
+          </div>
+          <button class="coming-soon-btn" disabled>Coming Soon</button>
+        </div>
+      </article>
+
+      <article class="upcoming-card reveal panel" data-anim="up">
+        <div class="upcoming-ribbon">Coming Soon</div>
+        <div class="upcoming-illustration illustration-iot">
+          <span>🌾</span>
+        </div>
+        <div class="upcoming-body">
+          <div class="upcoming-meta">
+            <span class="status-badge research">Research</span>
+            <span class="upcoming-due">Research Phase</span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl mb-3">Smart Agriculture Monitoring System</h3>
+          <p class="upcoming-description">An IoT-based smart farming solution that monitors soil moisture, temperature, humidity, and weather conditions to improve crop productivity.</p>
+          <div class="upcoming-tech">
+            <span>ESP32</span>
+            <span>IoT</span>
+            <span>Sensors</span>
+            <span>Firebase</span>
+          </div>
+          <button class="coming-soon-btn" disabled>Coming Soon</button>
+        </div>
+      </article>
+
+      <article class="upcoming-card reveal panel" data-anim="up">
+        <div class="upcoming-ribbon">Coming Soon</div>
+        <div class="upcoming-illustration illustration-finance">
+          <span>💰</span>
+        </div>
+        <div class="upcoming-body">
+          <div class="upcoming-meta">
+            <span class="status-badge planning">Planning</span>
+            <span class="upcoming-due">Q1 2027</span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl mb-3">Personal Finance Dashboard</h3>
+          <p class="upcoming-description">A modern finance management platform with expense tracking, analytics, budgeting, and AI-powered spending insights.</p>
+          <div class="upcoming-tech">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>MongoDB</span>
+          </div>
+          <button class="coming-soon-btn" disabled>Coming Soon</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" class="relative z-10 py-28 bg-bg2/40">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-16" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">ACHIEVEMENTS</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Milestones</h2>
+    </div>
+
+    <div class="relative pl-8 sm:pl-12">
+      <div class="timeline-line absolute left-2 sm:left-3 top-0 bottom-0 w-px"></div>
+
+      <div class="relative mb-12 reveal" data-anim="up">
+        <div class="timeline-dot absolute -left-[26px] sm:-left-[38px] top-1 w-3 h-3 rounded-full bg-orange"></div>
+        <div class="panel p-6">
+          <p class="text-2xl mb-1">🏆</p>
+          <h3 class="font-heading font-bold text-lg mb-1">AI4Everyone Hackathon Finalist</h3>
+          <p class="text-txt2 text-sm">Reached the finals among a large pool of competing teams.</p>
+        </div>
+      </div>
+
+      <div class="relative mb-12 reveal" data-anim="up">
+        <div class="timeline-dot absolute -left-[26px] sm:-left-[38px] top-1 w-3 h-3 rounded-full bg-orange"></div>
+        <div class="panel p-6">
+          <p class="text-2xl mb-1">🏆</p>
+          <h3 class="font-heading font-bold text-lg mb-1">Top 15 Team among 70+ Pods</h3>
+          <p class="text-txt2 text-sm">Ranked in the top 15 out of more than 70 competing pods.</p>
+        </div>
+      </div>
+
+      <div class="relative mb-12 reveal" data-anim="up">
+        <div class="timeline-dot absolute -left-[26px] sm:-left-[38px] top-1 w-3 h-3 rounded-full bg-orange"></div>
+        <div class="panel p-6">
+          <p class="text-2xl mb-1">🏆</p>
+          <h3 class="font-heading font-bold text-lg mb-1">Built The Offline Co.</h3>
+          <p class="text-txt2 text-sm">Designed and shipped an AI-powered documentation platform.</p>
+        </div>
+      </div>
+
+      <div class="relative reveal" data-anim="up">
+        <div class="timeline-dot absolute -left-[26px] sm:-left-[38px] top-1 w-3 h-3 rounded-full bg-orange"></div>
+        <div class="panel p-6">
+          <p class="text-2xl mb-1">🏆</p>
+          <h3 class="font-heading font-bold text-lg mb-1">Frontend Developer</h3>
+          <p class="text-txt2 text-sm">Actively building and shipping production-ready UI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="relative z-10 py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">EXPERIENCE</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Where I've grown</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-20">
+      <div class="panel p-7 reveal" data-anim="up">
+        <p class="text-3xl mb-4">🖥️</p>
+        <h3 class="font-heading font-bold text-lg mb-2">Frontend Developer</h3>
+        <p class="text-txt2 text-sm">Building responsive, accessible interfaces with React and Tailwind CSS.</p>
+      </div>
+      <div class="panel p-7 reveal" data-anim="up">
+        <p class="text-3xl mb-4">🧩</p>
+        <h3 class="font-heading font-bold text-lg mb-2">Hackathon Projects</h3>
+        <p class="text-txt2 text-sm">Rapid prototyping and shipping ideas under pressure with cross-functional teams.</p>
+      </div>
+      <div class="panel p-7 reveal" data-anim="up">
+        <p class="text-3xl mb-4">🌱</p>
+        <h3 class="font-heading font-bold text-lg mb-2">Open Source Learning</h3>
+        <p class="text-txt2 text-sm">Reading real-world codebases and contributing to sharpen full-stack skills.</p>
+      </div>
+    </div>
+
+    <div class="reveal mb-10" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">EDUCATION</p>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold">Academic background</h2>
+    </div>
+    <div class="relative pl-8 sm:pl-12 reveal" data-anim="up">
+      <div class="timeline-line absolute left-2 sm:left-3 top-0 bottom-0 w-px"></div>
+      <div class="relative">
+        <div class="timeline-dot absolute -left-[26px] sm:-left-[38px] top-1 w-3 h-3 rounded-full bg-orange"></div>
+        <div class="panel p-6">
+          <h3 class="font-heading font-bold text-lg mb-1">B.Tech — Electronics & Communication Engineering</h3>
+          <p class="text-txt2 text-sm">Haldia Institute of Technology</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact" class="relative z-10 py-28 bg-bg2/40">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal mb-14 text-center" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">CONTACT</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold mb-4">Let's build something</h2>
+      <p class="text-txt2 max-w-xl mx-auto">Have a project in mind or just want to say hi? My inbox is always open.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10">
+      <form id="contact-form" class="lg:col-span-3 panel p-8 reveal" data-anim="up" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label class="text-xs text-txt2 mb-2 block">Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Your name" class="w-full rounded-xl px-4 py-3 text-sm" required />
+          </div>
+          <div>
+            <label class="text-xs text-txt2 mb-2 block">Email</label>
+            <input id="contact-email" name="email" type="email" placeholder="you@example.com" class="w-full rounded-xl px-4 py-3 text-sm" required />
+          </div>
+        </div>
+        <div class="mb-5">
+          <label class="text-xs text-txt2 mb-2 block">Subject</label>
+          <input id="contact-subject" name="subject" type="text" placeholder="What's this about?" class="w-full rounded-xl px-4 py-3 text-sm" required />
+        </div>
+        <div class="mb-6">
+          <label class="text-xs text-txt2 mb-2 block">Message</label>
+          <textarea id="contact-message" name="message" rows="5" placeholder="Tell me about your project..." class="w-full rounded-xl px-4 py-3 text-sm" required></textarea>
+        </div>
+        <div id="form-status" class="mb-4 hidden text-sm" aria-live="polite"></div>
+        <button id="contact-submit" type="submit" class="btn-glow px-7 py-3.5 rounded-full font-heading font-semibold text-sm w-full sm:w-auto">Send Message</button>
+      </form>
+
+      <div class="lg:col-span-2 space-y-4 reveal" data-anim="up">
+        <a href="ahmedtufail516@gmail.com" class="panel p-5 flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">✉️</span>
+          <div><p class="text-xs text-txt2">Email</p><p class="font-heading font-semibold text-sm">@ahmedtufail516@gmail.com</p></div>
+        </a>
+        <a href="https://www.linkedin.com/in/tufail-ahmed-019a382a1/" class="panel p-5 flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">💼</span>
+          <div><p class="text-xs text-txt2">LinkedIn</p><p class="font-heading font-semibold text-sm">/in/tufailahmed</p></div>
+        </a>
+        <a href="https://github.com/Tufail2004" class="panel p-5 flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">🐙</span>
+          <div><p class="text-xs text-txt2">GitHub</p><p class="font-heading font-semibold text-sm">Tufail2004</p></div>
+        </a>
+        <a href="#" class="panel p-5 flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">𝕏</span>
+          <div><p class="text-xs text-txt2">X (Twitter)</p><p class="font-heading font-semibold text-sm">@ahmed</p></div>
+        </a>
+        <div class="panel p-5 flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">📍</span>
+          <div><p class="text-xs text-txt2">Location</p><p class="font-heading font-semibold text-sm">India</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="relative z-10 py-10 border-t" style="border-color:var(--bord);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-txt2 text-sm">Made with <span class="text-orange">❤️</span> by Tufail Ahmed</p>
+    <p class="text-txt2 text-xs">&copy; 2026 All rights reserved.</p>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF8C1A" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
