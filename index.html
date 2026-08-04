@@ -35,7 +35,17 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+  (function () {
+    const saved = localStorage.getItem('portfolio-theme') || 'system';
+    const theme = ['light', 'dark', 'system'].includes(saved) ? saved : 'system';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = theme === 'dark' || (theme === 'system' && prefersDark);
+    document.documentElement.classList.toggle('dark', shouldUseDark);
+    document.documentElement.dataset.theme = theme;
+  })();
+
   tailwind.config = {
+    darkMode: 'class',
     theme: {
       extend: {
         colors: {
@@ -80,8 +90,8 @@
 
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between py-5">
-    <a href="#home" class="font-heading text-xl font-extrabold tracking-tight">Tufail<span class="text-orange">.</span></a>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-14 flex items-center justify-between py-4 sm:py-5">
+    <a href="#home" class="font-heading text-lg sm:text-xl font-extrabold tracking-tight">Tufail<span class="text-orange">.</span></a>
     <div class="hidden md:flex items-center gap-8 text-sm">
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
@@ -91,16 +101,39 @@
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#contact" class="nav-link">Contact</a>
     </div>
-    <a href="Resume.pdf" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-glow font-heading text-sm font-semibold">
+    <a href="002 Tufaillll Resume.pdf" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-glow font-heading text-sm font-semibold">
       Resume
-
-
     </a>
-    <button id="mobile-toggle" class="md:hidden text-txt" aria-label="Toggle menu">
+
+    <div class="relative flex items-center gap-2">
+      <button id="theme-toggle-btn" type="button" class="relative inline-flex items-center justify-center w-11 h-11 rounded-full glass text-txt focus:outline-none focus-visible:ring-2 focus-visible:ring-orange/80" aria-label="Open theme selector" aria-haspopup="true" aria-expanded="false">
+        <svg id="theme-toggle-icon" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+          <path d="M12 3v2.5M12 18.5V21M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M3 12h2.5M18.5 12H21M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"></path>
+          <circle cx="12" cy="12" r="4.1"></circle>
+        </svg>
+      </button>
+
+      <div id="theme-menu" class="hidden absolute right-0 top-14 z-60 w-44 rounded-2xl glass p-2 shadow-2xl">
+        <button type="button" class="theme-option w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-left transition-colors" data-theme-option="light" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+          <span>Light</span>
+        </button>
+        <button type="button" class="theme-option w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-left transition-colors" data-theme-option="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><path d="M20 15.5A7.5 7.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5Z"></path></svg>
+          <span>Dark</span>
+        </button>
+        <button type="button" class="theme-option w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-left transition-colors" data-theme-option="system" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg>
+          <span>System</span>
+        </button>
+      </div>
+    </div>
+
+    <button id="mobile-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-txt hover:bg-white/5 transition-colors" aria-label="Toggle menu">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden glass mx-4 rounded-2xl px-6 py-6 flex flex-col gap-4 text-sm">
+  <div id="mobile-menu" class="hidden md:hidden glass mx-4 rounded-2xl px-5 py-5 flex flex-col gap-3 text-sm">
     <a href="#home" class="nav-link">Home</a>
     <a href="#about" class="nav-link">About</a>
     <a href="#skills" class="nav-link">Skills</a>
@@ -108,39 +141,56 @@
     <a href="#achievements" class="nav-link">Achievements</a>
     <a href="#experience" class="nav-link">Experience</a>
     <a href="#contact" class="nav-link">Contact</a>
-    <a href="Tufail Resume.pdf" class="btn-glow text-center px-5 py-2.5 rounded-full font-heading font-semibold">Resume</a>
+    <div class="border-t border-white/10 pt-3 mt-1">
+      <p class="text-[10px] uppercase tracking-[0.18em] text-txt2 mb-2">Theme</p>
+      <div class="grid grid-cols-3 gap-2">
+        <button type="button" class="theme-option flex items-center justify-center gap-2 rounded-xl px-2 py-2.5 text-xs font-medium transition-colors" data-theme-option="light" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+          Light
+        </button>
+        <button type="button" class="theme-option flex items-center justify-center gap-2 rounded-xl px-2 py-2.5 text-xs font-medium transition-colors" data-theme-option="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><path d="M20 15.5A7.5 7.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5Z"></path></svg>
+          Dark
+        </button>
+        <button type="button" class="theme-option flex items-center justify-center gap-2 rounded-xl px-2 py-2.5 text-xs font-medium transition-colors" data-theme-option="system" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg>
+          Auto
+        </button>
+      </div>
+    </div>
+    <a href="002 Tufaillll Resume.pdf" class="btn-glow text-center px-5 py-3 rounded-full font-heading font-semibold">Resume</a>
   </div>
 </nav>
 
 
-<section id="home" class="relative z-10 min-h-screen flex items-center pt-28 pb-16">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
+<section id="home" class="relative z-10 min-h-screen flex items-center pt-24 sm:pt-28 pb-14 sm:pb-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-14 w-full">
     <div class="hero-layout">
       <div class="reveal hero-copy" data-anim="up">
-        <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-4">HI, I'M</p>
-        <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6">
+        <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">HI, I'M</p>
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.2rem] 2xl:text-[5.8rem] font-extrabold leading-[1.05] mb-5 sm:mb-6">
           Tufail Ahmed
         </h1>
-        <div class="font-heading text-2xl sm:text-3xl font-extrabold text-txt2 mb-6 h-10">
+        <div class="font-heading text-xl sm:text-2xl md:text-3xl font-extrabold text-txt2 mb-5 sm:mb-6 h-8 sm:h-10">
           <span id="typing"></span><span class="type-cursor">&nbsp;</span>
         </div>
-        <p class="text-txt2 max-w-xl leading-relaxed mb-9 text-[15px] sm:text-base">
+        <p class="text-txt2 max-w-xl leading-relaxed mb-7 sm:mb-9 text-sm sm:text-[15px] md:text-base">
           I build beautiful, fast and scalable web applications while exploring AI, IoT and modern web technologies.
         </p>
-        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-          <a href="Resume.pdf" class="btn-glow px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
+          <a href="Resume.pdf" class="btn-glow px-5 sm:px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center justify-center gap-2">
             Download Resume
           </a>
-          <a href="#projects" class="btn-outline px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center gap-2">
+          <a href="#projects" class="btn-outline px-5 sm:px-7 py-3.5 rounded-full font-heading font-semibold text-sm inline-flex items-center justify-center gap-2">
             View Projects
           </a>
         </div>
-        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-12 text-txt2 text-sm">
-          <div><span class="text-txt font-heading font-bold text-xl">4+</span> Projects</div>
-          <div class="w-px h-6 bg-bord"></div>
-          <div><span class="text-txt font-heading font-bold text-xl">1</span> Hackathon Finalist</div>
-          <div class="w-px h-6 bg-bord"></div>
-          <div><span class="text-txt font-heading font-bold text-xl">B.Tech</span> ECE</div>
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 mt-10 sm:mt-12 text-txt2 text-xs sm:text-sm">
+          <div><span class="text-txt font-heading font-bold text-lg sm:text-xl">4+</span> Projects</div>
+          <div class="hidden sm:block w-px h-6 bg-bord"></div>
+          <div><span class="text-txt font-heading font-bold text-lg sm:text-xl">1</span> Hackathon Finalist</div>
+          <div class="hidden sm:block w-px h-6 bg-bord"></div>
+          <div><span class="text-txt font-heading font-bold text-lg sm:text-xl">B.Tech</span> ECE</div>
         </div>
       </div>
 
@@ -156,21 +206,21 @@
 </section>
 
 <section id="about" class="relative z-10 py-28">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-14" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">ABOUT</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">About Me</h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-10 sm:mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">ABOUT</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">About Me</h2>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-3 reveal" data-anim="up">
-        <p class="text-lg sm:text-xl text-txt leading-relaxed mb-6">
+    <div class="grid gap-6 md:grid-cols-5 md:gap-8 lg:gap-10">
+      <div class="md:col-span-3 reveal" data-anim="up">
+        <p class="text-base sm:text-lg md:text-xl text-txt leading-relaxed mb-5 sm:mb-6">
          I'm Tufail Ahmed, a final-year Electronics and Communication Engineering (ECE) student at Haldia Institute of Technology. I'm passionate about software development and enjoy building responsive, user-friendly web applications. I have experience with HTML, CSS, JavaScript, React, Node.js, Express.js, and MongoDB, along with IoT and embedded systems.
         </p>
-        <p class="text-txt2 leading-relaxed mb-6">
+        <p class="text-txt2 leading-relaxed mb-5 sm:mb-6 text-sm sm:text-base">
          I believe in continuous learning and enjoy solving real-world problems through technology. I'm currently strengthening my Data Structures & Algorithms skills while building projects that combine creativity with practical engineering.
         </p>
-        <div class="flex flex-wrap gap-3 mt-8">
+        <div class="flex flex-wrap gap-3 mt-6 sm:mt-8">
           <span class="skill-pill px-4 py-2 rounded-full text-sm">Hackathon Finalist</span>
           <span class="skill-pill px-4 py-2 rounded-full text-sm">AI Enthusiast</span>
           <span class="skill-pill px-4 py-2 rounded-full text-sm">IoT Explorer</span>
@@ -178,7 +228,7 @@
         </div>
       </div>
 
-      <div class="lg:col-span-2 grid grid-cols-2 gap-4 reveal" data-anim="up">
+      <div class="md:col-span-2 grid grid-cols-2 gap-4 reveal" data-anim="up">
         <div class="panel p-6">
           <p class="text-3xl mb-3">🎓</p>
           <p class="font-heading font-bold text-sm mb-1">B.Tech ECE</p>
@@ -205,13 +255,13 @@
 </section>
 
 <section id="skills" class="relative z-10 py-28 bg-bg2/40">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-14" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">SKILLS</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">What I work with</h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-10 sm:mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">SKILLS</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">What I work with</h2>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       <div class="panel p-7 reveal" data-anim="up">
         <h3 class="font-heading font-bold text-lg mb-5 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange"></span>Frontend</h3>
         <ul class="space-y-3 text-txt2 text-sm">
@@ -242,11 +292,11 @@
 
 
 <section id="projects" class="relative z-10 py-28">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-10 flex flex-wrap items-end justify-between gap-6" data-anim="up">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6" data-anim="up">
       <div>
-        <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">PROJECTS</p>
-        <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Things I've built</h2>
+        <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">PROJECTS</p>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">Things I've built</h2>
       </div>
       <div class="flex flex-wrap gap-2" id="filters">
         <button class="filter-btn active px-4 py-2 rounded-full text-xs font-heading font-semibold btn-outline" data-filter="all">All</button>
@@ -360,11 +410,11 @@
     <div class="blob blob-anim" style="width:360px;height:360px; right:-100px; top:20%; opacity:0.32; animation-delay:2s;"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal mb-12 text-center md:text-left" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">UPCOMING</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Upcoming Projects</h2>
-      <p class="text-txt2 mt-4 max-w-2xl">Ideas I'm currently planning and building.</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+    <div class="reveal mb-10 sm:mb-12 text-center md:text-left" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">UPCOMING</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">Upcoming Projects</h2>
+      <p class="text-txt2 mt-4 max-w-2xl text-sm sm:text-base">Ideas I'm currently planning and building.</p>
     </div>
 
     <div class="upcoming-grid grid gap-4 md:gap-5 xl:gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -437,10 +487,10 @@
 </section>
 
 <section id="achievements" class="relative z-10 py-28 bg-bg2/40">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-16" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">ACHIEVEMENTS</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Milestones</h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-10 sm:mb-16" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">ACHIEVEMENTS</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">Milestones</h2>
     </div>
 
     <div class="relative pl-8 sm:pl-12">
@@ -487,13 +537,13 @@
 
 <!-- EXPERIENCE -->
 <section id="experience" class="relative z-10 py-28">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-14" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">EXPERIENCE</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold">Where I've grown</h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-10 sm:mb-14" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">EXPERIENCE</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold">Where I've grown</h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 mb-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-14 sm:mb-20">
       <div class="panel p-7 reveal" data-anim="up">
         <p class="text-3xl mb-4">🖥️</p>
         <h3 class="font-heading font-bold text-lg mb-2">Frontend Developer</h3>
@@ -511,9 +561,9 @@
       </div>
     </div>
 
-    <div class="reveal mb-10" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">EDUCATION</p>
-      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold">Academic background</h2>
+    <div class="reveal mb-8 sm:mb-10" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">EDUCATION</p>
+      <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-extrabold">Academic background</h2>
     </div>
     <div class="relative pl-8 sm:pl-12 reveal" data-anim="up">
       <div class="timeline-line absolute left-2 sm:left-3 top-0 bottom-0 w-px"></div>
@@ -530,15 +580,15 @@
 
 
 <section id="contact" class="relative z-10 py-28 bg-bg2/40">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="reveal mb-14 text-center" data-anim="up">
-      <p class="text-orange font-heading font-semibold tracking-widest text-sm mb-3">CONTACT</p>
-      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold mb-4">Let's build something</h2>
-      <p class="text-txt2 max-w-xl mx-auto">Have a project in mind or just want to say hi? My inbox is always open.</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="reveal mb-10 sm:mb-14 text-center" data-anim="up">
+      <p class="text-orange font-heading font-semibold tracking-widest text-xs sm:text-sm mb-3">CONTACT</p>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">Let's build something</h2>
+      <p class="text-txt2 max-w-xl mx-auto text-sm sm:text-base">Have a project in mind or just want to say hi? My inbox is always open.</p>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-10">
-      <form id="contact-form" class="lg:col-span-3 panel p-8 reveal" data-anim="up" novalidate>
+    <div class="grid gap-6 lg:grid-cols-5 lg:gap-10">
+      <form id="contact-form" class="lg:col-span-3 panel p-5 sm:p-8 reveal" data-anim="up" novalidate>
         <div class="grid sm:grid-cols-2 gap-5 mb-5">
           <div>
             <label class="text-xs text-txt2 mb-2 block">Name</label>
@@ -562,7 +612,7 @@
       </form>
 
       <div class="lg:col-span-2 space-y-4 reveal" data-anim="up">
-        <a href="ahmedtufail516@gmail.com" class="panel p-5 flex items-center gap-4">
+        <a href="ahmedtufail516@gmail.com" class="panel p-4 sm:p-5 flex items-center gap-4">
           <span class="w-11 h-11 rounded-xl bg-orange/10 text-orange flex items-center justify-center text-lg">✉️</span>
           <div><p class="text-xs text-txt2">Email</p><p class="font-heading font-semibold text-sm">@ahmedtufail516@gmail.com</p></div>
         </a>
@@ -589,7 +639,7 @@
 
 
 <footer class="relative z-10 py-10 border-t" style="border-color:var(--bord);">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-txt2 text-sm">Made with <span class="text-orange">❤️</span> by Tufail Ahmed</p>
     <p class="text-txt2 text-xs">&copy; 2026 All rights reserved.</p>
   </div>

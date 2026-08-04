@@ -25,6 +25,100 @@ window.addEventListener('load', () => {
 
 
 
+const STORAGE_KEY = 'portfolio-theme';
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const themeIcon = document.getElementById('theme-toggle-icon');
+const themeMenu = document.getElementById('theme-menu');
+const themeOptions = [...document.querySelectorAll('[data-theme-option]')];
+const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function getThemePreference() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return ['light', 'dark', 'system'].includes(saved) ? saved : 'system';
+}
+
+function getResolvedTheme(theme) {
+  if (theme === 'light') return 'light';
+  if (theme === 'dark') return 'dark';
+  return systemThemeQuery.matches ? 'dark' : 'light';
+}
+
+function setThemeIcon(theme) {
+  const resolved = getResolvedTheme(theme);
+  const isDark = resolved === 'dark';
+  const icons = {
+    light: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>',
+    dark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M20 15.5A7.5 7.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5Z"></path></svg>',
+    system: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg>'
+  };
+
+  if (themeIcon) {
+    themeIcon.innerHTML = icons[theme] || icons.system;
+  }
+
+  const nextTitle = theme === 'light' ? 'Switch to light theme' : theme === 'dark' ? 'Switch to dark theme' : 'Switch to system theme';
+  if (themeToggleBtn) {
+    themeToggleBtn.setAttribute('aria-label', nextTitle);
+    themeToggleBtn.setAttribute('title', nextTitle);
+    themeToggleBtn.classList.toggle('ring-2', isDark);
+    themeToggleBtn.classList.toggle('ring-orange/50', isDark);
+  }
+}
+
+function applyTheme(theme) {
+  const resolved = getResolvedTheme(theme);
+  const isDark = resolved === 'dark';
+  document.documentElement.classList.toggle('dark', isDark);
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem(STORAGE_KEY, theme);
+
+  themeOptions.forEach((option) => {
+    const isActive = option.dataset.themeOption === theme;
+    option.classList.toggle('active', isActive);
+    option.setAttribute('aria-pressed', String(isActive));
+  });
+
+  setThemeIcon(theme);
+}
+
+function toggleThemeMenu(forceOpen) {
+  if (!themeMenu || !themeToggleBtn) return;
+  const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : themeMenu.classList.contains('hidden');
+  themeMenu.classList.toggle('hidden', !shouldOpen);
+  themeToggleBtn.setAttribute('aria-expanded', String(shouldOpen));
+}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    toggleThemeMenu();
+  });
+}
+
+themeOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    const selectedTheme = option.dataset.themeOption;
+    applyTheme(selectedTheme);
+    toggleThemeMenu(false);
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!themeMenu || !themeToggleBtn) return;
+  if (!themeMenu.contains(event.target) && !themeToggleBtn.contains(event.target)) {
+    toggleThemeMenu(false);
+  }
+});
+
+systemThemeQuery.addEventListener('change', () => {
+  const storedTheme = getThemePreference();
+  if (storedTheme === 'system') {
+    applyTheme('system');
+  }
+});
+
+applyTheme(getThemePreference());
+
 const navbar = document.getElementById('navbar');
 const backTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
