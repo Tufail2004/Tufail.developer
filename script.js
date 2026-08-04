@@ -1,10 +1,10 @@
 
-// EmailJS credentials
+// EmailJS ye mail ke liye hain
 const EMAILJS_SERVICE_ID = "service_6gty4mh";
 const EMAILJS_TEMPLATE_ID = "template_w2zxhso";
 const EMAILJS_PUBLIC_KEY = "OxTieu6YeN5bnNu06";
 
-// Initialize EmailJS once at startup, after the CDN loads.
+
 if (window.emailjs) {
   emailjs.init({
     publicKey: EMAILJS_PUBLIC_KEY
@@ -291,7 +291,7 @@ if (contactForm) {
       return;
     }
 
-    // Prevent duplicate submissions while the request is processing.
+    
     contactSubmit.disabled = true;
     contactSubmit.textContent = 'Sending...';
     formStatus.classList.add('hidden');
@@ -308,9 +308,6 @@ if (contactForm) {
     });
 
     try {
-      // Match the EmailJS template variables exactly:
-      // {{from_name}}, {{from_email}}, {{subject}}, {{message}}
-      // Send the payload without any extra options because init() already configured the public key.
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
